@@ -45,6 +45,10 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
+// Custom layouts
+import OTPVerificationPage from "layouts/authentication/oTPVerification";
+// C:\wamp64\www\material-dashboard-react\src\layouts\authentication\oTPVerification\index.js
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
@@ -112,6 +116,17 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
+  },
+
+  //          CUSTOM ROUTES
+  //          Add your custom routes here
+  {
+    type: "collapse",
+    name: "Verify",
+    key: "Verifyp",
+    icon: <Icon fontSize="small">Verify</Icon>,
+    route: "/authentication/oTPVerificationPage",
+    component: <OTPVerificationPage />,
   },
 ];
 

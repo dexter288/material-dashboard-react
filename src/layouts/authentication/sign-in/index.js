@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 /* eslint-disable */
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -32,6 +32,9 @@ import MDButton from "components/MDButton";
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
+// history
+import { useNavigate } from 'react-router-dom';
+
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
@@ -39,6 +42,7 @@ function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
   const [email, SetEmail] = useState("email");
   const [password, setPassword] = useState("passorword");
+  const navigate = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -47,6 +51,20 @@ function Basic() {
     console.log("Sign in");
     console.log("Email: ", email);
     console.log("Password: ", password);
+    navigate("/authentication/oTPVerificationPage");
+
+    if (rememberMe) {
+      console.log("Remember me: ", rememberMe);
+    }
+
+    // check if the email and password are valid and set error if not
+    if (email === "" || password === "") {
+      console.log(e);
+
+      //navigate to the OTPVerificationPage
+      navigate("/authentication/oTPVerificationPage");
+    }
+
   };
 
   return (
@@ -70,7 +88,13 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth name={email} />
+              <MDInput 
+                type="email" 
+                label="Email" 
+                fullWidth 
+                name={email} 
+                onChange={(e)=> SetEmail(e.target.value)}
+              />
             </MDBox>
             <MDBox mb={2}>
               <MDInput 
